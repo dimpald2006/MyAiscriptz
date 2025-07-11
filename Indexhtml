@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptViz AI - Turn Scripts into Videos Instantly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Embedded CSS */
+        .style-option.active {
+            background-color: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        textarea:focus, button:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #6366f180;
+        }
+        .video-placeholder {
+            background-color: #f1f5f9;
+            border-radius: 1rem;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans">
+    <!-- Hero Section -->
+    <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent leading-tight">
+                    Transform Scripts into Videos with AI
+                </h1>
+                <p class="text-lg md:text-xl text-slate-500 mb-4">
+                    Paste your script and our AI creates a detailed video automatically. It analyzes emotions, actions, and visual cues line by line.
+                </p>
+                <p class="text-lg md:text-xl text-slate-500">
+                    Every detail is captured perfectly - from teardrops to subtle movements. All scenes merge into one cinematic video. 100% free!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div class="flex flex-col md:flex-row gap-8 justify-between">
+                <div class="flex-1 bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mb-6 mx-auto">1</div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Paste Your Script</h3>
+                    <p class="text-slate-500 text-center">Paste your script and our AI will analyze every line.</p>
+                </div>
+                <div class="flex-1 bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mb-6 mx-auto">2</div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Choose Style</h3>
+                    <p class="text-slate-500 text-center">Select Anime, Cartoon or Realistic style.</p>
+                </div>
+                <div class="flex-1 bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mb-6 mx-auto">3</div>
+                    <h3 class="text-xl font-semibold text-center mb-3">Generate Video</h3>
+                    <p class="text-slate-500 text-center">Get your finished video in seconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Input Section -->
+    <section class="pb-20">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-slate-50 rounded-xl p-8 md:p-12 mb-12">
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <button class="style-option active px-6 py-2 border-2 border-slate-200 rounded-full font-medium transition-all duration-200">
+                        Anime
+                    </button>
+                    <button class="style-option px-6 py-2 border-2 border-slate-200 rounded-full font-medium transition-all duration-200">
+                        Cartoon
+                    </button>
+                    <button class="style-option px-6 py-2 border-2 border-slate-200 rounded-full font-medium transition-all duration-200">
+                        Realistic
+                    </button>
+                </div>
+                
+                <textarea class="w-full min-h-[200px] p-6 border-2 border-slate-200 rounded-xl focus:border-primary resize-y mb-8 transition-colors duration-200"
+                    placeholder="Paste your script here... Example: 'John slowly walks to the window, his eyes filled with sadness as rain falls outside.'"></textarea>
+                
+                <button id="generateBtn" class="w-full max-w-xs mx-auto block px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    Generate Video
+                </button>
+            </div>
+            
+            <!-- Video Preview -->
+            <h2 class="text-3xl font-bold text-center mb-8">Your Video Preview</h2>
+            <div class="video-placeholder">
+                <div class="text-center p-8">
+                    <svg class="w-20 h-20 text-slate-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    <p>Your generated video will appear here</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-slate-500 text-sm">
+        <div class="container mx-auto px-6">
+            <p>100% Free Forever | Built with AI</p>
+        </div>
+    </footer>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Style selection
+            const styleOptions = document.querySelectorAll('.style-option');
+            styleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    styleOptions.forEach(opt => opt.classList.remove('active', 'bg-primary', 'border-primary', 'text-white'));
+                    this.classList.add('active', 'bg-primary', 'border-primary', 'text-white');
+                });
+            });
+            
+            // Generate button
+            const generateBtn = document.getElementById('generateBtn');
+            generateBtn.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = 'Generating...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    document.querySelector('.video-placeholder').innerHTML = `
+                        <div class="w-full h-full flex items-center justify-center bg-black text-white">
+                            <p>Video would appear here in real implementation</p>
+                        </div>`;
+                    this.textContent = originalText;
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
