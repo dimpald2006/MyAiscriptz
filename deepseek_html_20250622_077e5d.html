@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptViz AI - Turn Scripts into Videos Instantly</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header & Hero */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #f9fafb, #ffffff);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        
+        /* How It Works */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .step p {
+            color: var(--gray);
+        }
+        
+        /* Input Section */
+        .input-section {
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .style-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .style-option {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .style-option:hover, .style-option.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .script-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 1rem;
+            font-size: 1rem;
+            resize: vertical;
+            margin-bottom: 2rem;
+            transition: border-color 0.2s ease;
+        }
+        
+        .script-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* Generate Button */
+        .generate-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+        
+        .generate-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+        }
+        
+        /* Video Preview */
+        .video-preview {
+            width: 100%;
+            background-color: #f1f5f9;
+            border-radius: 1rem;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .video-placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .input-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Scripts into Stunning Videos with AI</h1>
+            <p>Paste your written script and let our AI create a highly detailed video automatically. Our tool reads your script line by line, detects emotions, actions, and visual cues using advanced natural language processing, and generates precise scene-specific prompts for video generation.</p>
+            <p>Every detail is captured perfectly - from a teardrop falling to a character slowly sitting down. All scenes are automatically merged into one cinematic masterpiece. And it's completely free!</p>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Paste Your Script</h3>
+                    <p>Simply copy and paste your written script into our editor. The AI will analyze every line for emotions, actions, and visual details.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Choose Visual Style</h3>
+                    <p>Select from multiple styles including Anime, Cartoon, or Realistic to match your creative vision.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Generate & Download</h3>
+                    <p>Click generate and watch as our AI creates a cinematic video from your script. Download the final product with one click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Input Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="input-section">
+                <div class="style-selector">
+                    <div class="style-option active">Anime</div>
+                    <div class="style-option">Cartoon</div>
+                    <div class="style-option">Realistic</div>
+                </div>
+                <textarea class="script-input" placeholder="Paste your script here... The AI will analyze each line for emotions, actions, and visual details to create the perfect video. Example: 'John slowly walks to the window, his eyes filled with sadness as he watches the rain fall heavily outside.'"></textarea>
+                <button class="generate-btn">Generate Video</button>
+            </div>
+            
+            <!-- Video Preview Section -->
+            <h2 class="section-title">Your Video Preview</h2>
+            <div class="video-preview">
+                <div class="video-placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <p>Your generated video will appear here</p>
+                    <p><small>Example output will show after clicking "Generate Video"</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>100% Free Forever | Built with AI</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Style selection
+            const styleOptions = document.querySelectorAll('.style-option');
+            styleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    styleOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Generate button click
+            const generateBtn = document.querySelector('.generate-btn');
+            generateBtn.addEventListener('click', function() {
+                this.textContent = 'Generating...';
+                this.disabled = true;
+                
+                // Simulate generation process
+                setTimeout(() => {
+                    this.textContent = 'Generate Video';
+                    this.disabled = false;
+                    alert('Video generation complete! This is a frontend demo. In a real app, your video would appear in the preview section.');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
