@@ -1,0 +1,16 @@
+/* Custom styles that extend Tailwind */
+@layer components {
+    .style-option.active {
+        @apply bg-primary border-primary text-white;
+    }
+    
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Better focus styles */
+    [type="text"]:focus, [type="email"]:focus, [type="url"]:focus, [type="password"]:focus, [type="number"]:focus, [type="date"]:focus, [type="datetime-local"]:focus, [type="month"]:focus, [type="search"]:focus, [type="tel"]:focus, [type="time"]:focus, [type="week"]:focus, [multiple]:focus, textarea:focus, select:focus {
+        @apply ring-2 ring-primary/50;
+    }
+}
